@@ -1,8 +1,6 @@
 FactoryBot.define do
   factory :article do
-    sequence :title do |n|
-       "Sample article #{n}"
-    end
+    sequence(:title) { |n| "Sample article #{n}" }
     content { "Sample content" }
     slug { "#{title.downcase.gsub(/[[:space:]]/, '-')}" }
   end
