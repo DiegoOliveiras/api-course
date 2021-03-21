@@ -30,7 +30,7 @@ describe UserAuthenticator do
           login: "jsmith1",
           url: "http:example.com",
           avatar_url: "http://example.com/avatar",
-          name: "John smith"
+          name: "John Smith"
         }
       end
       before do
@@ -43,7 +43,13 @@ describe UserAuthenticator do
 
       it "should save the user when does not exist" do
         expect{ subject }.to change{ User.count }.by(1)
-        expect(Usert.last.name).to eq("John Smith")
+        expect(User.last.name).to eq("John Smith")
+      end
+
+      it "should reuse already registered user" do
+        user = create :user, user_data
+        expect{ subject }.not_to change{ User.count }
+        expect(authenticator.user).to eq(user)
       end
     end
   end  
