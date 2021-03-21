@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe '#validations' do
-    let(:article) {build(:article)}
+    let(:article) { build(:article) }
 
     it 'tests that factory is valid' do 
       expect(article).to be_valid
